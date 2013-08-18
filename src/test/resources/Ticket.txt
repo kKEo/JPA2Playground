@@ -1,0 +1,41 @@
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Entity
+public class Ticket {
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private Long id;
+
+	private String title;
+
+	@Column(name = "description", length = 3000)
+	private String description;
+	
+	private String issueDt;
+
+	@Enumerated
+	private Priority priority;
+	
+	@ManyToMany(mappedBy="ticket")
+	private Collection<Requirement> requirement;
+	
+	public enum Status {
+		READY, INPROGRESS, NEW, SUSPENDED, CLOSED
+	}
+	
+	@Enumerated(EnumType.STRING)
+	private Status status;
+}
