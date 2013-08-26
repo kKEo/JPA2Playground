@@ -1,0 +1,23 @@
+
+import javax.persistence.*;
+
+import java.util.Date;
+
+@Entity
+public class SimpleTicket {
+
+		@Id
+		@GeneratedValue
+		@Column(name = "id")
+		private Long id;
+	
+		private String title;
+	
+		@Column(name = "description", length = 3000)
+		private String description;
+		
+		private String issueDt;
+		
+		private Date dueDate;
+
+}

@@ -27,7 +27,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GenerateDdlsSeviceImpl implements GenerateDdlsService{
+public class GenerateDdlsSeviceImpl implements GenerateDdlsService {
 
 	private File tmpDir;
 
@@ -45,7 +45,7 @@ public class GenerateDdlsSeviceImpl implements GenerateDdlsService{
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	private String generateInternal(Map<String, String> sources) throws IOException, NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException,
 			InstantiationException {
@@ -63,6 +63,7 @@ public class GenerateDdlsSeviceImpl implements GenerateDdlsService{
 
 		tmpDir = new File("/tmp", "jpa-tmp-" + timeInMillis);
 		tmpDir.mkdir();
+		tmpDir.deleteOnExit();
 
 		logger.debug("" + tmpDir);
 
@@ -194,7 +195,5 @@ public class GenerateDdlsSeviceImpl implements GenerateDdlsService{
 
 		return jarFile;
 	}
-
-
 
 }
