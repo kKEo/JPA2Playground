@@ -1,0 +1,47 @@
+import java.util.*;
+--- Requirement
+
+
+@Entity
+public class Requirement {
+ 
+ @Id
+ private Long id;
+
+ @ManyToMany(targetEntity=Ticket.class)
+ private List<Ticket> ticket; 
+
+}
+
+---Ticket
+
+@Entity
+public class Ticket {
+
+ @Id
+ private String id;
+
+ @ManyToMany(mappedBy="ticket")
+ private Collection<Requirement> requirement;
+
+}
+
+---FancyTicket
+
+@Entity
+public class FancyTicket extends Ticket {
+ 
+ private String description;
+
+ private int fanciness;
+
+}
+
+---PoorTicket
+
+@Entity
+public class PoorTicket extends Ticket {
+ 
+ private Long poorness;
+
+}
